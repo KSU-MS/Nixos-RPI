@@ -1,1 +1,1 @@
-Hello from KSU-MS 🎓
+NIXOS IMAGIE RASPIBERRY
