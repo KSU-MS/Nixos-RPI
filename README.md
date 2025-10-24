@@ -1,4 +1,4 @@
-# KSU NixOS flake
+# NixOS-based image
 Host: tochi
 
 Rebuild:
