@@ -1,0 +1,6 @@
+/result
+/nix-result
+.direnv/
+*.swp
+*.swo
+.cache/
