@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 /result
 /nix-result
 .direnv/
 *.swp
 *.swo
 .cache/
+=======
+*.img
+*.img.zst
+/result*
+.direnv/
+.envrc
+>>>>>>> 57ea92f (chore: add .gitignore & cleanup)
+*.img
+*.img.zst
+/result*
+.direnv/
+.envrc
