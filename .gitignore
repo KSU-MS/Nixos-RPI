@@ -22,3 +22,8 @@
 /result*
 .direnv/
 .envrc
+*.img
+*.img.zst
+/result*
+.direnv/
+.envrc
