@@ -27,3 +27,8 @@
 /result*
 .direnv/
 .envrc
+
+# ignore build artefacts
+*.img
+*.img.zst
+result/
