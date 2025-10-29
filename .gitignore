@@ -32,3 +32,8 @@
 *.img
 *.img.zst
 result/
+
+# ignore SD images & build outputs
+*.img
+*.img.zst
+result/
