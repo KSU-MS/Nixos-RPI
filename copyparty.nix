@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Open the port (NixOS firewall; WSL still forwards to Windows)
+  # Open the CopyParty port
   networking.firewall.allowedTCPPorts = [ 3923 ];
 
-  # Service user + data dirs
+  # Create a system user/group for safety
   users.groups.copyparty = {};
   users.users.copyparty = {
     isSystemUser = true;
@@ -13,20 +13,21 @@
     createHome = true;
   };
 
+  # Make sure directories exist and are owned correctly
   systemd.tmpfiles.rules = [
     "d /srv/copyparty      0755 copyparty copyparty -"
     "d /var/lib/copyparty  0755 copyparty copyparty -"
   ];
 
-  # Install binary (nice for quick manual tests)
+  # Install CopyParty globally (for manual testing too)
   environment.systemPackages = [ pkgs.copyparty ];
 
-  # --- Native service: enabled by design (wantedBy) ---
+  # Define and enable the service
   systemd.services.copyparty = {
-    description = "CopyParty file server";
+    description = "CopyParty File Server";
     after = [ "network.target" "network-online.target" ];
     wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];   # ← ensures it starts on boot
+    wantedBy = [ "multi-user.target" ];  # ← ensures automatic startup
 
     serviceConfig = {
       User = "copyparty";
@@ -43,7 +44,10 @@
       RestartSec = 2;
 
       NoNewPrivileges = true;
-      ProtectHome = true;
       ProtectSystem = "full";
+      ProtectHome = true;
       PrivateTmp = true;
-      LimitNOFILE = 6
+      LimitNOFILE = 65536;
+    };
+  };
+}

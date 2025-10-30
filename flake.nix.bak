@@ -12,6 +12,7 @@
       modules = [
         ./nixos/hosts/tochi.nix     # your host file
         ./nixos/git.nix             # keep git installed system-wide
+        ./nixos/copyparty.nix       # (placeholder OK)
         nixos-wsl.nixosModules.wsl  # <— THIS provides the `wsl.*` options
       ];
     };
